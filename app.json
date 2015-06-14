@@ -1,0 +1,34 @@
+{
+ "apps":[
+   {
+     "name":"atom"
+   },
+   {
+     "name":"nodejs"
+   },
+   {
+     "name":"python"
+   },
+   {
+     "name":"golang"
+   },
+   {
+     "name":"eclipse"
+   },
+   {
+     "name":"llvm"
+   },
+   {
+     "name":"android-studio"
+   },
+   {
+     "name":"cmake"
+   },
+   {
+     "name":"visual-studio"
+   },
+   {
+     "name":"unikey"
+   }
+ ]
+}
