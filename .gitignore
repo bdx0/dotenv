@@ -1,2 +1,4 @@
 personal.json
 *.exe
+.dotenv/*
+*_com.json

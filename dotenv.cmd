@@ -8,6 +8,7 @@ set HOME=D:/dbduy0206/dbd-home
 set NDK_ROOT=D:\tools\android-ndk
 set SDK_ROOT=D:\tools\android-sdk
 set PATH=%NDK_ROOT%;%SDK_ROOT%\platform-tools;%SDK_ROOT%\tools;%PATH%
+set PATH=C:\Program Files\Mercurial;%PATH%
 
 :: set path for python
 set PYTHON=D:\tools\python2
