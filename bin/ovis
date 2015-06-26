@@ -1,0 +1,13 @@
+#!/bin/bash -
+pushd `dirname $0` > /dev/null
+SCRIPTPATH=`pwd -P`
+popd > /dev/null
+
+export OPT_PATH=$(dirname $SCRIPTPATH)
+
+echo run command: \'$@\'
+env sh <<EOF
+#!/bin/sh -
+source "$OPT_PATH/bin/env"
+(($@ < /dev/tty) && exit 0) || exit 1
+EOF

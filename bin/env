@@ -1,0 +1,17 @@
+#!/bin/bash -
+pushd `dirname $0` > /dev/null
+SCRIPTPATH=`pwd -P`
+popd > /dev/null
+
+export OPT_PATH=~/opt
+export PATH=$OPT_PATH/bin/bin:$OPT_PATH/google/chrome-beta:$OPT_PATH/tools/android-sdk/platform-tools:$OPT_PATH/tools/android-sdk/tools:$OPT_PATH/tools/android-ndk:$OPT_PATH/tools/android-studio/gradle/gradle-2.2.1/bin:$OPT_PATH/tools/android-studio/bin:$OPT_PATH/tools/depot_tools:$PATH
+export PATH=$OPT_PATH/tools/eclipse-jee:$PATH
+export PATH=$OPT_PATH/tools/eclipse4.0:$PATH
+export PATH=~/.dropbox-dist:$PATH
+export PATH=$OPT_PATH/tools/gnumake:$PATH
+
+alias eclipse='eclipse -data ~/tmp/workspace'
+alias eclipse4.0='eclipse4.0 -data ~/tmp/workspace4.0'
+alias emacs='emacs -q -l ~/tmp/dbd-tools/dbd_emacs.d/init_ver21.el'
+alias editor='emacs -q -l ~/tmp/dbd-tools/dbd_emacs.d/init_ver21.el'
+#alias enw='emacs -nw -q -l ~/tmp/dbd-tools/dbd_emacs.d/init_ver21.el < /dev/tty'
