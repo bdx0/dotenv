@@ -26,13 +26,15 @@ def main():
     with open(services_file_path, 'r') as f:
       for line in f.readlines():
         if not line.startswith('#'):
-          cmd = re.findall(r'([a-zA-z-/_0-9&]+|".+")', line.rstrip())
-          print 'start service:  %s' % cmd
-          ps = sp.Popen(cmd, stdout=None, stderr=None, stdin=None,
-                        close_fds=True, creationflags=0)
+          #   cmd = re.findall(r'([a-zA-z-/_0-9&]+|".+")', line.rstrip())
+          print 'start service:  %s' % line
+          #   ps = sp.Popen(cmd, stdout=None, stderr=None, stdin=None,
+          #                 close_fds=True, creationflags=0)
+          os.system(line)
+
           # sp.DETA DETACHED_PROCESS)
-          # print ps.communicate()[0]
-          time.sleep(1)
+          #   print ps.communicate()[0]
+          time.sleep(3)
 
       f.close()
 
