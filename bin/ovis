@@ -1,0 +1,69 @@
+#!/usr/bin/env python
+"""" ovis --- ovis core libs
+@Author: dbd
+@Version: 0.0.1
+"""
+""" Commentary:
+"""
+
+""" Code:
+"""
+import argparse
+import sys
+import os
+
+
+def dload(path=[], *args, **kwargs):
+  if path:
+    filepath = os.path.join(*path)
+    global_namespace = {
+        "__file__": filepath,
+        "__name__": "__main__",
+    }
+    locals_namespace = {}
+    exec(open(os.path.join(filepath), 'rb').read(),
+         global_namespace, locals_namespace)
+    # print locals()
+    results = {}
+    results.update(global_namespace)
+    results.update(locals_namespace)
+    return results
+    # return execfile(filepath, global_namespace)
+  return None, None
+
+local_path = os.path.dirname(os.path.realpath(__file__))
+utils = dload([local_path, 'ovis.d', 'utils'])
+
+
+def get_opts():
+  return {'file': ['file', '-f', '--file'],
+          'targets': ['targets', '', '']}
+
+
+def option_parse(argv):
+  opts = get_opts()
+  parser = argparse.ArgumentParser(prog='ovis')
+  parser.add_argument(opts['file'][1], opts['file'][2], help="Input file")
+  parser.add_argument(opts['targets'][0], nargs='*', help="List targets")
+  return vars(parser.parse_args(argv[1:]))
+
+
+def run_target(target):
+  # execfile(os.path.join(local_path, 'targets.py'))
+  targets = dload([local_path, 'targets.py'])
+  # print targets
+  targets[target]()
+  # eval(r'target[]%s()' % target)
+
+
+def exectargets(targets):
+  for target in targets:
+    run_target(target)
+
+
+def main(argv):
+  results = option_parse(argv)
+  # print results
+  opts = get_opts()
+  file, targets = results[opts['file'][0]], results[opts['targets'][0]]
+  exectargets(targets)

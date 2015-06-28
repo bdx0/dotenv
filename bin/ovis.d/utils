@@ -1,0 +1,54 @@
+#!/usr/bin/env python
+""" utils --- some utils function
+@Author duongbaoduy
+@Version 0.0.1
+"""
+""" Commentary:
+"""
+""" Code: """
+import os
+import sys
+
+print 'load utils ....'
+
+def exec_full(filepath):
+  global_namespace = {
+      "__file__": filepath,
+      "__name__": "__main__",
+  }
+  with open(filepath, 'rb') as file:
+    exec(compile(file.read(), filepath, 'exec'), global_namespace)
+
+
+def ovis_utils_findexecutable(program):
+  from distutils.spawn import find_executable
+  return find_executable(program)
+
+
+def ovis_utils_which(program):
+  """ which command base on python
+  """
+  # http://stackoverflow.com/questions/377017/test-if-executable-exists-in-python
+  def is_exe(fpath):
+    return os.path.isfile(fpath) and os.access(fpath, os.X_OK)
+  fpath, fname = os.path.split(program)
+  if fpath:
+    if is_exe(program):
+      return program
+  else:
+    for path in os.environ["PATH"].split(os.pathsep):
+      path = path.strip('"')
+      exe_file = os.path.join(path, program)
+      if is_exe(exe_file):
+        return exe_file
+
+  return None
+
+
+def which(program):
+  for ftry in [ovis_utils_findexecutable, ovis_utils_which]:
+    return ftry(program)
+
+
+def utils_which(program):
+  return program
